@@ -142,7 +142,7 @@ Here is the code of such extension::
             self.items_scraped += 1
             if self.items_scraped == self.item_count:
                 spider.log("scraped %d items, resetting counter" % self.items_scraped)
-                self.item_count = 0
+                self.items_scraped = 0
 
 .. _topics-extensions-ref:
 
