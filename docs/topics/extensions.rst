@@ -140,9 +140,9 @@ Here is the code of such extension::
 
         def item_scraped(self, item, spider):
             self.items_scraped += 1
-            if self.items_scraped == self.item_count:
+            if self.items_scraped % self.item_count == 0:
                 spider.log("scraped %d items, resetting counter" % self.items_scraped)
-                self.items_scraped = 0
+                
 
 .. _topics-extensions-ref:
 
