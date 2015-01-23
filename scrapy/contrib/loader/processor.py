@@ -63,31 +63,6 @@ class Identity(object):
         return values
 
 
-class JsonProcessor(object):
-    """
-        Given a jmespath, will search for it in the set of scraped values
-        Requires : jmespath, ast modules
-    """
-    def __init__(self,jpath):
-        self.json_path = jpath
-        
-    def __call__(self,values):
-        jsonValues = []
-        try:
-            import jmespath,ast,json
-        except:
-            print "JsonProcessor module requires the jmespath library to function. No processing will happen in its abscence"
-            return values
-        for currentString in values:
-            if currentString!="":#convert string to dict and then search
-                jsonValue = jmespath.search(self.json_path,ast.literal_eval(currentString))
-                if jsonValue:
-                    if type(jsonValue) == dict:
-                        jsonValues.append(json.dumps(jsonValue))
-                    else:
-                        jsonValues.append(jsonValue)                
-        return jsonValues
-        
 class Join(object):
 
     def __init__(self, separator=u' '):
