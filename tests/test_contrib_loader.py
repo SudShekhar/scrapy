@@ -579,20 +579,5 @@ class SelectortemLoaderTest(unittest.TestCase):
         self.assertEqual(l.get_output_value('url'), [u'scrapy.org'])
 
 
-class JsonProcessorTestCase(unittest.TestCase):
-	test_list_equals = {
-			'simple' : ('foo.bar',['{"foo": {"bar": "baz"}}'],["baz"]),
-			'invalid': ('foo.bar.baz',['{"foo": {"bar": "baz"}}'],[]),
-			'top_level':('foo',['{"foo": {"bar": "baz"}}'],['{"bar": "baz"}']),
-			'multiple': ('foo.bar',['{"foo": {"bar": "baz"}}','{"foo": {"bar": "baz"}}'],["baz","baz"]),
-			'double_vs_single_quoteString':('foo.bar',["{'foo':{'bar':'baz'}}"],['baz'])
-		}
-	def test_equals(self):
-		for l in self.test_list_equals:
-			expr,test_list, expected = self.test_list_equals[l]
-			test = JsonProcessor(expr)(test_list)
-			self.assertEqual(test, expected,
-					msg='test "{}" got {} expected {}'.format(l, test, expected)
-
 if __name__ == "__main__":
     unittest.main()
